@@ -1,4 +1,5 @@
 function solution(telno) {
+    // - 문자가 포함되어 있어도 동작해야 한다.
     const tel = telno.replaceAll("-","");
     const failure = ["전국", "X"];
     const map = {
@@ -11,6 +12,13 @@ function solution(telno) {
         "061": "전남", "062": "광주", "063": "전북",
         "064": "제주"
     };
+
+    // 001과 002 로 시작하는 번호는 국제전화로 판단해서 앞 3자리를 제외하고 8자리~12자리까지만 허용하는 로직을 추가한다.
+    if (tel.substring(0,3) === "001" || tel.substring(0,3) === "002") {
+        const foreign_tel = tel.substring(3);
+        if (8<=foreign_tel.length && foreign_tel.length<=12) return ["국제전화", "O"];
+        else return ["국제전화", "X"]
+    }
 
     if (tel.length > 11 || tel.length < 9) return failure;
     else if (tel[0] !== '0') return failure;
@@ -37,6 +45,9 @@ function solution(telno) {
     return failure;
 }
 
+console.log(solution("001010-123-1234"));
+console.log(solution("002010-43-34"));
+console.log(solution("003010-123-1234"));
 console.log(solution("010-123-1234"));
 console.log(solution("010-2234-1234"));
 console.log(solution("02-1234-1234"));

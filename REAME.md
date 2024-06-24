@@ -7,25 +7,23 @@
 
 ```js
 if 국제전화
-    if 8<=tel.length<=12
+    tel <- "0" + tel[3:]
+
+if 서울
+    if tel.length === 10
+    && all ending_code is not same                      // 이 규칙 뭐야?
     then correct
 
-if 9<=tel.length<=11
-    if 서울
-        if tel.length === 10
-        && all ending_code is not same
-        then correct
+else if 휴대폰
+    && top_code === "010"
+    && tel.length === 11
+    && middle_code[0] is even                           // 이 규칙 뭐야??
+    then correct
 
-    else if 휴대폰
-        if top_code === "010"
-        && tel.length === 11
-        && middle_code[0] is even   // 이 규칙 뭐야??
-        then correct
-
-    else
-        if tel.length === 10
-        && middle_code[0] !=="0"
-        then correct
+else if 지역
+    if tel.length in [9, 10, 11]
+    && !(tel.length === 10 && middle_code[0] === "0")   // 이 규칙도 뭐야???
+    then correct
 ```
 
 ## 디버깅해서 개선하기

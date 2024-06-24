@@ -1,5 +1,5 @@
 function solution(telno) {
-    const tel = telno;
+    const tel = telno.replaceAll("-","");
     const failure = ["전국", "X"];
     const map = {
         "010": "휴대폰",

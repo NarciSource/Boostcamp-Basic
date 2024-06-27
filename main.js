@@ -21,10 +21,10 @@ function reset() {
 function randomFill(empty_ladders) {
     const ladders = copy(empty_ladders);
     const number_to_fill = random(0, ladders_area);
-    const places_to_fill = choices(number_to_fill, range(ladders_area));
+    const places_to_fill = choices(number_to_fill, range(ladders_area))
+                            .map(place => divmod(place, scaffolds_width));
 
-    for (const place of places_to_fill) {
-        const [y, x] = divmod(place, scaffolds_width);
+    for (const [y, x] of places_to_fill) {
         ladders[y][x] = choice(["---", "\\-\\", "/-/"]);
     }
 
